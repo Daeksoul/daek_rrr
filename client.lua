@@ -28,7 +28,7 @@ end)
 function handleRollOutcome(result, ped)
     if result == 1 then
         -- Kill player after suspense delay
-        Citizen.SetTimeout(4500, function()
+        Citizen.SetTimeout(5000, function()
             SetEntityHealth(ped, 0)
         end)
     end

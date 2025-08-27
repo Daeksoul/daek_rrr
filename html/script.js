@@ -52,7 +52,7 @@ function revealRollResult(rollValue) {
     //const smoke = document.getElementById("smoke");
 
     diceValue.textContent = rollValue === 1
-        ? "Bang. You're dead."
+        ? "BANG. You're Dead!"
         : `You rolled a ${rollValue}. Lucky...`;
     result.classList.remove("hidden");
 

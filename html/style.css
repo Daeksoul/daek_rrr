@@ -63,16 +63,16 @@ body.active #cylinder-container {
     transform: translate(-50%, -50%);
 }
 
-#chamber-1 { top: -172px;  left: 16px; }
-#chamber-2 { top: -147px; left: 60px; }
-#chamber-3 { top: -95px; left: 60px; }
-#chamber-4 { top: -67px; left: 15px; }
-#chamber-5 { top: -95px; left: -32px; }
-#chamber-6 { top: -147px; left: -30px; }
+#chamber-1 { top: -200px;  left: 16px; }
+#chamber-2 { top: -168px; left: 75px; }
+#chamber-3 { top: -105px; left: 75px; }
+#chamber-4 { top: -67px; left: 16px; }
+#chamber-5 { top: -105px; left: -45px; }
+#chamber-6 { top: -168px; left: -45px; }
 
 .chamber.active {
-    background-color: gold;
-    box-shadow: 0 0 15px gold, inset 0 0 10px rgba(255, 215, 0, 0.5);
+    background-color: rgb(255, 0, 0);
+    box-shadow: 0 0 15px rgb(0, 0, 0), inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 #roll-text {
