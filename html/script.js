@@ -72,6 +72,9 @@ window.addEventListener('message', function(event) {
             }, 1500);
         }, suspenseDelay);
     }
+        if (data.type === "hideUI") {
+        document.getElementById("container").classList.add("hidden");
+    }
 
     if (event.data.type === "hideRoll") {
         document.body.classList.remove("active");
