@@ -1,3 +1,5 @@
+math.randomseed(os.time())  --Seed RNG
+
 RegisterNetEvent("daek_rrr:requestRoll")
 AddEventHandler("daek_rrr:requestRoll", function()
     local src = source
