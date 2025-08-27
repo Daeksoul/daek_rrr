@@ -12,8 +12,8 @@ function performChamberRoll()
     local rand = math.random()
     local roll
 
-    if rand < 0.1 then
-        roll = 1 -- ~10% chance
+    if rand < 0.1 then -- ~10% chance
+        roll = 1 
     elseif rand < 0.28 then
         roll = 2
     elseif rand < 0.46 then
