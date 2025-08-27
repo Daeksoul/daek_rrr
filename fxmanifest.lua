@@ -15,7 +15,10 @@ files {
     'html/index.html',
     'html/style.css',
     'html/script.js',
-    'html/coinspin.png',
+    'html/skull.png',
+    'html/background_overlay.png',
+    'html/blood_mist.png',
+    'html/cylinder_gothic.png',
     'html/revolver_spin.mp3',
     'html/revolver_fire.mp3',
 }
