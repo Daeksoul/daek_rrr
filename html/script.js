@@ -1,7 +1,10 @@
 window.addEventListener('message', function(event) {
-    if (event.data.type === "showRoll") {
+    if (event.data.type === "showUI") {
         document.body.classList.add("active");
+        document.getElementById("nui-wrapper").classList.remove("hidden");
+    }
 
+    if (event.data.type === "showRoll") {
         const cylinder = document.getElementById("cylinder");
         const result = document.getElementById("result");
         const diceValue = document.getElementById("dice-value");
@@ -26,10 +29,11 @@ window.addEventListener('message', function(event) {
     if (event.data.type === "hideRoll") {
         document.body.classList.remove("active");
         document.getElementById("result").classList.add("hidden");
+        document.getElementById("nui-wrapper").classList.add("hidden");
         document.querySelectorAll('.chamber').forEach(chamber => {
             chamber.classList.remove('active');
         });
-        document.getElementById("smoke").classList.remove("visible");
+        //document.getElementById("smoke").classList.remove("visible");
     }
 });
 
@@ -37,7 +41,7 @@ function resetUI() {
     document.querySelectorAll('.chamber').forEach(chamber => {
         chamber.classList.remove('active');
     });
-    document.getElementById("smoke").classList.remove("visible");
+    //document.getElementById("smoke").classList.remove("visible");
 }
 
 function revealRollResult(rollValue) {
@@ -45,7 +49,7 @@ function revealRollResult(rollValue) {
     const result = document.getElementById("result");
     const chamberId = `chamber-${rollValue}`;
     const chamber = document.getElementById(chamberId);
-    const smoke = document.getElementById("smoke");
+    //const smoke = document.getElementById("smoke");
 
     diceValue.textContent = rollValue === 1
         ? "Bang. You're dead."
@@ -56,11 +60,11 @@ function revealRollResult(rollValue) {
 
     playAudio("revolver_fire.mp3");
 
-    smoke.classList.add("visible");
+    //smoke.classList.add("visible");
 
-    setTimeout(() => {
-        smoke.classList.remove("visible");
-    }, 1500);
+    //setTimeout(() => {
+    //    smoke.classList.remove("visible");
+    //}, 1500);
 }
 
 function playAudio(src) {

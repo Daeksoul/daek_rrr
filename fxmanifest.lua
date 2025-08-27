@@ -18,7 +18,6 @@ files {
     'html/cylinder_gothic.png',
     'html/background_overlay.png',
     'html/skull.png',
-    'html/blood_mist.png',
     'html/revolver_spin.mp3',
     'html/revolver_fire.mp3'
 }
