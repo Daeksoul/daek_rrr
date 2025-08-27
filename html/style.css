@@ -1,61 +1,55 @@
 body {
+    background: transparent;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-family: 'Arial', sans-serif;
-}
-
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block;
-    opacity: 1;
-}
-
-#container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999;
+    font-family: 'Cinzel Decorative', serif;
+    color: white;
 }
 
 #overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
     background: url('background_overlay.png') no-repeat center center;
     background-size: cover;
-    z-index: 1;
+    z-index: -1;
+    opacity: 0.8;
 }
 
 #skull-row {
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
+    justify-content: center;
     gap: 10px;
-    z-index: 2;
+    margin-top: 20px;
 }
 
 .skull {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background: url('skull.png') no-repeat center center;
     background-size: contain;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
 }
 
 #cylinder-container {
+    display: none;
     position: absolute;
-    top: 30%;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
+    width: 400px;
+    padding: 20px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
     text-align: center;
-    z-index: 3;
+    z-index: 999;
+}
+
+body.active #cylinder-container {
+    display: block;
 }
 
 #cylinder {
@@ -64,61 +58,74 @@ body {
     background: url('cylinder_gothic.png') no-repeat center center;
     background-size: contain;
     margin: 0 auto;
-    transform-origin: center center;
 }
 
 #chambers {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 250px;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin: 10px auto;
     pointer-events: none;
+}
+
+.chamber {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 0, 0, 0.0);
+    transition: background-color 0.3s ease;
+    transform: translate(-50%, -50%);
+}
+
+#chamber-1 { top: -172px;  left: 16px; }
+#chamber-2 { top: -147px; left: 60px; }
+#chamber-3 { top: -95px; left: 60px; }
+#chamber-4 { top: -67px; left: 15px; }
+#chamber-5 { top: -95px; left: -32px; }
+#chamber-6 { top: -147px; left: -30px; }
+
+.chamber.active {
+    background-color: gold;
+    box-shadow: 0 0 15px gold, inset 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 #smoke {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 250px;
-    background: url('blood_mist.png') no-repeat center center;
+    top: -110px;
+    left: 15px;
+    width: 300px;
+    height: 300px;
+    background: url('smoke.png') no-repeat center center;
     background-size: contain;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    z-index: 3;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 10;
+    transform: translate(-50%, -50%);
 }
 
 #smoke.visible {
     opacity: 1;
+    animation: puff 1.5s ease-out;
 }
 
-#blood-vignette {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(rgba(255,0,0,0.3), transparent);
-    pointer-events: none;
-    z-index: 4;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-#blood-vignette.visible {
-    opacity: 1;
-}
-
-#result {
-    margin-top: 20px;
-    font-size: 32px;
-    color: white;
-    z-index: 5;
+@keyframes puff {
+    0% { transform: scale(0.5); opacity: 0.8; }
+    100% { transform: scale(1.8); opacity: 0; }
 }
 
 #roll-text {
-    margin-top: 10px;
     font-size: 24px;
+    color: #ccc;
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 0 0 5px #000;
+}
+
+#result {
+    font-size: 20px;
+    margin-top: 10px;
     color: white;
+    text-shadow: 0 0 5px red;
 }
