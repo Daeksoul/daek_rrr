@@ -22,6 +22,6 @@ AddEventHandler("daek_rrr:showRollUI", function(result)
     end)
 end)
 
-RegisterCommand("roll", function()
+RegisterCommand("rrr", function()
     TriggerServerEvent("daek_rrr:requestRoll")
 end, false)
