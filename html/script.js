@@ -25,7 +25,6 @@ window.addEventListener('message', function(event) {
 
     if (event.data.type === "hideRoll") {
         document.body.classList.remove("active");
-        document.body.classList.remove("blood-effect");
         document.getElementById("result").classList.add("hidden");
         document.querySelectorAll('.chamber').forEach(chamber => {
             chamber.classList.remove('active');
@@ -39,7 +38,6 @@ function resetUI() {
         chamber.classList.remove('active');
     });
     document.getElementById("smoke").classList.remove("visible");
-    document.body.classList.remove("blood-effect");
 }
 
 function revealRollResult(rollValue) {
@@ -50,7 +48,7 @@ function revealRollResult(rollValue) {
     const smoke = document.getElementById("smoke");
 
     diceValue.textContent = rollValue === 1
-        ? "Bang - You're dead!"
+        ? "Bang. You're dead."
         : `You rolled a ${rollValue}. Lucky...`;
     result.classList.remove("hidden");
 
@@ -60,13 +58,8 @@ function revealRollResult(rollValue) {
 
     smoke.classList.add("visible");
 
-    if (rollValue === 1) {
-        document.body.classList.add("blood-effect");
-    }
-
     setTimeout(() => {
         smoke.classList.remove("visible");
-        document.body.classList.remove("blood-effect");
     }, 1500);
 }
 

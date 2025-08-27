@@ -27,20 +27,11 @@ end)
 
 function handleRollOutcome(result, ped)
     if result == 1 then
-        -- Add blood mist / vignette effect
-        TriggerScreenEffect()
-
         -- Kill player after suspense delay
         Citizen.SetTimeout(4500, function()
             SetEntityHealth(ped, 0)
         end)
     end
-end
-
-function TriggerScreenEffect()
-    -- Example: Red vignette or blood mist effect
-    -- You can swap this with a custom effect or particle later
-    StartScreenEffect("DeathFailOut", 4500, false)
 end
 
 RegisterCommand("rrr", function()
