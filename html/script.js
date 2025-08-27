@@ -6,14 +6,10 @@ window.addEventListener('message', function(event) {
         const result = document.getElementById("result");
         const diceValue = document.getElementById("dice-value");
 
-        document.querySelectorAll('.chamber').forEach(chamber => {
-            chamber.classList.remove('active');
-        });
+        resetUI();
 
         cylinder.classList.add("spin");
-
-        const audio = new Audio("revolver_spin.mp3");
-        audio.play();
+        playAudio("revolver_spin.mp3");
 
         diceValue.textContent = "";
         result.classList.add("hidden");
@@ -22,31 +18,14 @@ window.addEventListener('message', function(event) {
 
         setTimeout(() => {
             const rollValue = Number(event.data.value);
-            diceValue.textContent = rollValue === 1
-                ? "Bang. You're dead."
-                : `You rolled a ${rollValue}. Lucky...`;
-            result.classList.remove("hidden");
-
-            const chamberId = `chamber-${rollValue}`;
-            const chamber = document.getElementById(chamberId);
-            if (chamber) chamber.classList.add('active');
-
-            const fireAudio = new Audio("revolver_fire.mp3");
-            fireAudio.play();
-
-            const smoke = document.getElementById("smoke");
-            smoke.classList.add("visible");
-
+            revealRollResult(rollValue);
             cylinder.classList.remove("spin");
-
-            setTimeout(() => {
-                smoke.classList.remove("visible");
-            }, 1500);
         }, suspenseDelay);
     }
 
     if (event.data.type === "hideRoll") {
         document.body.classList.remove("active");
+        document.body.classList.remove("blood-effect");
         document.getElementById("result").classList.add("hidden");
         document.querySelectorAll('.chamber').forEach(chamber => {
             chamber.classList.remove('active');
@@ -54,3 +33,44 @@ window.addEventListener('message', function(event) {
         document.getElementById("smoke").classList.remove("visible");
     }
 });
+
+function resetUI() {
+    document.querySelectorAll('.chamber').forEach(chamber => {
+        chamber.classList.remove('active');
+    });
+    document.getElementById("smoke").classList.remove("visible");
+    document.body.classList.remove("blood-effect");
+}
+
+function revealRollResult(rollValue) {
+    const diceValue = document.getElementById("dice-value");
+    const result = document.getElementById("result");
+    const chamberId = `chamber-${rollValue}`;
+    const chamber = document.getElementById(chamberId);
+    const smoke = document.getElementById("smoke");
+
+    diceValue.textContent = rollValue === 1
+        ? "Bang - You're dead!"
+        : `You rolled a ${rollValue}. Lucky...`;
+    result.classList.remove("hidden");
+
+    if (chamber) chamber.classList.add('active');
+
+    playAudio("revolver_fire.mp3");
+
+    smoke.classList.add("visible");
+
+    if (rollValue === 1) {
+        document.body.classList.add("blood-effect");
+    }
+
+    setTimeout(() => {
+        smoke.classList.remove("visible");
+        document.body.classList.remove("blood-effect");
+    }, 1500);
+}
+
+function playAudio(src) {
+    const audio = new Audio(src);
+    audio.play();
+}
