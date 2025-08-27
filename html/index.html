@@ -6,29 +6,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Background Overlay -->
-    <div id="overlay">
-        <img src="background_overlay.png" alt="Background Overlay" id="background-img" />
-    </div>
+    <div id="container" class="hidden">
+        <div id="overlay"></div>
 
-    <!-- Skull Row -->
-    <div id="skull-row">
-        <img src="skull.png" class="skull" alt="Skull" />
-        <img src="skull.png" class="skull" alt="Skull" />
-        <img src="skull.png" class="skull" alt="Skull" />
-        <img src="skull.png" class="skull" alt="Skull" />
-        <img src="skull.png" class="skull" alt="Skull" />
-        <img src="skull.png" class="skull" alt="Skull" />
-    </div>
+        <div id="skull-row">
+            <div class="skull"></div>
+            <div class="skull"></div>
+            <div class="skull"></div>
+            <div class="skull"></div>
+            <div class="skull"></div>
+            <div class="skull"></div>
+        </div>
 
-    <!-- Cylinder and Effects -->
-    <div id="cylinder-container">
-        <img src="cylinder_gothic.png" id="cylinder" alt="Cylinder" />
-        <div id="chambers"></div>
-        <img src="blood_mist.png" id="smoke" alt="Smoke Effect" />
-        <div id="blood-vignette"></div>
-        <div id="result" class="hidden"><span id="dice-value"></span></div>
-        <div id="roll-text">ROLL YOUR CHANCES</div>
+        <div id="cylinder-container">
+            <div id="cylinder"></div>
+            <div id="chambers"></div>
+            <div id="smoke" class="hidden"></div>
+            <div id="blood-vignette" class="hidden"></div>
+            <div id="result" class="hidden"><span id="dice-value"></span></div>
+            <div id="roll-text">ROLL YOUR CHANCES</div>
+        </div>
     </div>
 
     <script src="script.js"></script>

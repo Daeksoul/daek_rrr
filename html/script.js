@@ -22,13 +22,24 @@ function createChambers() {
 window.addEventListener('DOMContentLoaded', createChambers);
 
 window.addEventListener('message', function(event) {
-    if (event.data.type === "showRoll") {
+    const data = event.data;
+
+    if (data.type === "showUI") {
+        document.getElementById("container").classList.remove("hidden");
+    }
+
+    if (data.type === "hideUI") {
+        document.getElementById("container").classList.add("hidden");
+    }
+
+    if (data.type === "showRoll") {
         document.body.classList.add("active");
 
         const cylinder = document.getElementById("cylinder");
         const result = document.getElementById("result");
         const diceValue = document.getElementById("dice-value");
         const vignette = document.getElementById("blood-vignette");
+        const smoke = document.getElementById("smoke");
 
         document.querySelectorAll('.chamber').forEach(chamber => {
             chamber.classList.remove('active');
@@ -36,17 +47,17 @@ window.addEventListener('message', function(event) {
 
         cylinder.classList.add("spin");
 
-        const audio = new Audio("revolver_spin.mp3");
-        audio.play();
+        new Audio("revolver_spin.mp3").play();
 
         diceValue.textContent = "";
         result.classList.add("hidden");
         vignette.classList.remove("visible");
+        smoke.classList.remove("visible");
 
         const suspenseDelay = 3000;
 
         setTimeout(() => {
-            const rollValue = Number(event.data.value);
+            const rollValue = Number(data.value);
             diceValue.textContent = rollValue === 1
                 ? "Bang. You're dead."
                 : `You rolled a ${rollValue}. Lucky...`;
@@ -55,12 +66,8 @@ window.addEventListener('message', function(event) {
             const chamber = document.getElementById(`chamber-${rollValue}`);
             if (chamber) chamber.classList.add('active');
 
-            const fireAudio = new Audio("revolver_fire.mp3");
-            fireAudio.play();
-
-            const smoke = document.getElementById("smoke");
+            new Audio("revolver_fire.mp3").play();
             smoke.classList.add("visible");
-
             cylinder.classList.remove("spin");
 
             if (rollValue === 1) {
@@ -72,11 +79,8 @@ window.addEventListener('message', function(event) {
             }, 1500);
         }, suspenseDelay);
     }
-        if (data.type === "hideUI") {
-        document.getElementById("container").classList.add("hidden");
-    }
 
-    if (event.data.type === "hideRoll") {
+    if (data.type === "hideRoll") {
         document.body.classList.remove("active");
         document.getElementById("result").classList.add("hidden");
         document.querySelectorAll('.chamber').forEach(chamber => {
@@ -84,5 +88,6 @@ window.addEventListener('message', function(event) {
         });
         document.getElementById("smoke").classList.remove("visible");
         document.getElementById("blood-vignette").classList.remove("visible");
+        document.getElementById("container").classList.add("hidden");
     }
 });
