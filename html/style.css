@@ -49,7 +49,7 @@ body {
 }
 
 body.active #cylinder-container {
-    display: block;
+    display: block !important;
 }
 
 #cylinder {
@@ -58,6 +58,7 @@ body.active #cylinder-container {
     background: url('cylinder_gothic.png') no-repeat center center;
     background-size: contain;
     margin: 0 auto;
+    transform-origin: center center;
 }
 
 #chambers {
